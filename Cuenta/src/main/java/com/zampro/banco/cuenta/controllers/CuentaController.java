@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zampro.banco.cuenta.entities.Cuenta;
-import com.zampro.banco.cuenta.exceptions.CuentaNoEncontrada;
 import com.zampro.banco.cuenta.services.ICuentaService;
 
 @RestController
@@ -23,12 +22,7 @@ public class CuentaController {
 	
 	@GetMapping(path = "/{id}")
 	public Cuenta getCuenta(@PathVariable long id) {
-		Cuenta c = cuentaServicio.buscar(id);
-		
-		if (c == null)
-			throw new CuentaNoEncontrada(id);
-		else
-			return c;
+		return cuentaServicio.buscar(id);
 	}
 	
 	@GetMapping(path = "/{id}/saldo")
@@ -36,9 +30,9 @@ public class CuentaController {
 		return cuentaServicio.buscar(id).getSaldo().toString();
 	}
 	
-	@PostMapping(path = "/")
-	public Cuenta altaCuenta() {
-		return cuentaServicio.alta();
+	@PostMapping(path = "/{idCliente}")
+	public Cuenta altaCuenta(@PathVariable long idCliente) {
+		return cuentaServicio.alta(idCliente);
 	}
 	
 	@PutMapping(path = "/{id}")

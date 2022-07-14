@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zampro.banco.cuenta.entities.Cliente;
 import com.zampro.banco.cuenta.entities.Cuenta;
 import com.zampro.banco.cuenta.exceptions.CuentaNoEncontrada;
 import com.zampro.banco.cuenta.repositories.ICuentaDao;
@@ -14,19 +15,34 @@ import com.zampro.banco.cuenta.repositories.ICuentaDao;
 public class CuentaServiceImpl implements ICuentaService {
 
 	@Autowired
-	ICuentaDao dao;
+	private ICuentaDao dao;
+	
+	@Autowired
+	private IClienteService microCliente;
 	
 	@Override
 	@Transactional(readOnly = false)
-	public Cuenta buscar(long id) {
-		return dao.findById(id).orElse(null);
+	public Cuenta buscar(long id) {		
+		Cuenta c = dao.findById(id).orElse(null);
+		
+		if (c != null)
+			return c;
+		else
+			throw new CuentaNoEncontrada(id);
 	}
 	
 	@Override
 	@Transactional
-	public Cuenta alta() {
-		Cuenta c = new Cuenta("Caja de Ahorros", "Caja de Ahorros A");
-		return dao.save(c);
+	public Cuenta alta(long idCliente) {
+		Cliente cliente = microCliente.getCliente(idCliente);
+		
+		Cuenta cuenta = dao.save(new Cuenta("Caja de Ahorros", "Caja de Ahorros A"));
+		
+		cliente.setCuentaId(cuenta.getId());
+		
+		microCliente.setCliente(cliente);
+				
+		return cuenta;
 	}
 
 	@Override

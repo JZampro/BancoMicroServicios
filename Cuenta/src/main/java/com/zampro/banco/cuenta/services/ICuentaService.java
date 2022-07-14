@@ -6,7 +6,7 @@ public interface ICuentaService {
 	
 	public Cuenta buscar(long id);
 	
-	public Cuenta alta();
+	public Cuenta alta(long idCliente);
 	
 	public Cuenta modificar(Cuenta c);
 	
