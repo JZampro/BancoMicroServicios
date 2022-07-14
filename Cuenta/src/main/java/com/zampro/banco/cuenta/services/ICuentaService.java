@@ -8,8 +8,8 @@ public interface ICuentaService {
 	
 	public Cuenta alta();
 	
-	public Cuenta modificar(Cuenta c) throws Exception;
+	public Cuenta modificar(Cuenta c);
 	
-	public void baja(long id) throws Exception;
+	public void baja(long id);
 
 }

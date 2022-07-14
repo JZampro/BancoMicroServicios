@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zampro.banco.cuenta.entities.Cuenta;
+import com.zampro.banco.cuenta.exceptions.CuentaNoEncontrada;
 import com.zampro.banco.cuenta.repositories.ICuentaDao;
 
 @Service
@@ -30,25 +31,25 @@ public class CuentaServiceImpl implements ICuentaService {
 
 	@Override
 	@Transactional
-	public Cuenta modificar(Cuenta c) throws Exception {
+	public Cuenta modificar(Cuenta c) {
 		Optional<Cuenta> cuenta = dao.findById(c.getId());
 		
 		if (!cuenta.isEmpty())
 			return dao.save(c);
 		else
-			throw new Exception("La cuanta que desea modificar no existe!");
+			throw new CuentaNoEncontrada(c.getId());
 	}
 
 	@Override
 	@Transactional
-	public void baja(long id) throws Exception {
+	public void baja(long id){
 		Cuenta c = dao.findById(id).orElse(null);
 		
 		if (c != null) {
 			c.setActiva(false);
-			dao.save(c);
 		} else
-			throw new Exception("La cuanta que desea dar de baja no existe!");
+			throw new CuentaNoEncontrada(id);
+			
 	}
 
 }
