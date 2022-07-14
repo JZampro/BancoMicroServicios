@@ -30,7 +30,7 @@ public class ClienteController {
         return clienteService.saveCliente(cliente);
     }
 
-    @GetMapping("/clientes/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Cliente> getClienteById(@PathVariable Long clienteId) {
         try {
             Cliente cliente = clienteService.findById(clienteId);
