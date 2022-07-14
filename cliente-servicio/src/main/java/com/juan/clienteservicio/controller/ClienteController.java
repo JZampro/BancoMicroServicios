@@ -47,6 +47,22 @@ public class ClienteController {
         return clienteService.getClienteWithSucursal(clienteId);
     }
 
+    @PutMapping("/{id}/{idCuenta}")
+    public ResponseEntity<Cliente> updateIdCuenta(@PathVariable("id") Long clienteId, @PathVariable Long idCuenta) {
+
+        try {
+            Cliente cliente = clienteService.findById(clienteId);
+
+            cliente.setCuentaId(idCuenta);
+            final Cliente updatedCliente = clienteService.saveCliente(cliente);
+            return new ResponseEntity<Cliente>(updatedCliente, HttpStatus.OK);
+
+        } catch(NoSuchElementException e) {
+            return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente(@PathVariable("id") Long clienteId, @RequestBody Cliente detallesCliente) {
 

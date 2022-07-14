@@ -44,6 +44,7 @@ public class ClienteService {
                 restTemplate.getForObject("http://localhost:9001/sucursales/" + cliente.getSucursalId(),
                         Sucursal.class);
 
+
         responseTemplate.setCliente(cliente);
         responseTemplate.setSucursal(sucursal);
 
