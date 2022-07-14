@@ -30,7 +30,7 @@ public class ClienteController {
         return clienteService.saveCliente(cliente);
     }
 
-    /*@GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Cliente> getClienteById(@PathVariable Long clienteId) {
         try {
             Cliente cliente = clienteService.findById(clienteId);
@@ -39,9 +39,9 @@ public class ClienteController {
         } catch(NoSuchElementException e) {
             return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
         }
-    }*/
+    }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/clientesucursal")
     public ResponseTemplate getClienteWithSucursal(@PathVariable("id") Long clienteId){
 
         return clienteService.getClienteWithSucursal(clienteId);
