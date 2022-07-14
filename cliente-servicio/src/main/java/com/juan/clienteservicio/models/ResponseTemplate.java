@@ -1,4 +1,4 @@
-package com.juan.clienteservicio.Models;
+package com.juan.clienteservicio.models;
 
 import com.juan.clienteservicio.entity.Cliente;
 

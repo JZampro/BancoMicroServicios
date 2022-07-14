@@ -1,7 +1,7 @@
 package com.juan.clienteservicio.service;
 
-import com.juan.clienteservicio.Models.ResponseTemplate;
-import com.juan.clienteservicio.Models.Sucursal;
+import com.juan.clienteservicio.models.ResponseTemplate;
+import com.juan.clienteservicio.models.Sucursal;
 import com.juan.clienteservicio.entity.Cliente;
 import com.juan.clienteservicio.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class ClienteService {
         Cliente cliente = clienteRepository.findById(clienteId).get();
 
         Sucursal sucursal =
-                restTemplate.getForObject("http://SUCURSAL-SERVICIO/sucursales/" + cliente.getSucursalId(),
+                restTemplate.getForObject("http://localhost:9001/sucursales/" + cliente.getSucursalId(),
                         Sucursal.class);
 
         responseTemplate.setCliente(cliente);
