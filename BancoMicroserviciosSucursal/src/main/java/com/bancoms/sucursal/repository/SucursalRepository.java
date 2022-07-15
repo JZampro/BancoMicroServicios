@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.bancoms.sucursal.entity.Sucursal;
 
 @Repository
-public interface SucursalRepository extends JpaRepository<Sucursal,Integer> {
+public interface SucursalRepository extends JpaRepository<Sucursal,Long> {
 	
 }

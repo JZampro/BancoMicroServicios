@@ -25,4 +25,13 @@ public class SucursalService {
 		//return sucursalRepository
 	//}
 	
+	public boolean existeSucursal(Long idsucursal) {
+		return sucursalRepository.existsById(idsucursal);
+	}
+	
+	public Sucursal get(Long id) {
+		return sucursalRepository.findById(id).get();
+	}
+	
+	
 }
