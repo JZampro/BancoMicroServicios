@@ -31,7 +31,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> getClienteById(@PathVariable Long clienteId) {
+    public ResponseEntity<Cliente> getClienteById(@PathVariable(value = "id") Long clienteId) {
         try {
             Cliente cliente = clienteService.findById(clienteId);
             return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
@@ -71,6 +71,7 @@ public class ClienteController {
 
             cliente.setEmail(detallesCliente.getEmail());
             cliente.setSucursalId(detallesCliente.getSucursalId());
+            cliente.setCuentaId(detallesCliente.getCuentaId());
             final Cliente updatedCliente = clienteService.saveCliente(cliente);
             return new ResponseEntity<Cliente>(updatedCliente, HttpStatus.OK);
 
