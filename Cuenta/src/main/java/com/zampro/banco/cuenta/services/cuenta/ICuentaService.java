@@ -1,4 +1,4 @@
-package com.zampro.banco.cuenta.services;
+package com.zampro.banco.cuenta.services.cuenta;
 
 import com.zampro.banco.cuenta.entities.Cuenta;
 

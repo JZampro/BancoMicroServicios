@@ -3,12 +3,13 @@ package com.zampro.banco.cuenta.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(code = HttpStatus.SERVICE_UNAVAILABLE)
-public class ErrorMicroExterno extends RuntimeException {
+@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE)
+public class SaldoInsuficiente extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public ErrorMicroExterno(String message) {
-		super("Error Recibido desde micro Externo: " + message);
+	public SaldoInsuficiente() {
+		super("Saldo insuficiente para realizar la transaccion.");
 	}
+
 }

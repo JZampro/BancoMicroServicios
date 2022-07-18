@@ -1,4 +1,4 @@
-package com.zampro.banco.cuenta.services;
+package com.zampro.banco.cuenta.services.cuenta;
 
 import java.util.Optional;
 
@@ -10,6 +10,7 @@ import com.zampro.banco.cuenta.entities.Cliente;
 import com.zampro.banco.cuenta.entities.Cuenta;
 import com.zampro.banco.cuenta.exceptions.CuentaNoEncontrada;
 import com.zampro.banco.cuenta.repositories.ICuentaDao;
+import com.zampro.banco.cuenta.services.cliente.IClienteService;
 
 @Service
 public class CuentaServiceImpl implements ICuentaService {
@@ -46,7 +47,7 @@ public class CuentaServiceImpl implements ICuentaService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional()
 	public Cuenta modificar(Cuenta c) {
 		Optional<Cuenta> cuenta = dao.findById(c.getId());
 		

@@ -1,4 +1,4 @@
-package com.zampro.banco.cuenta.services;
+package com.zampro.banco.cuenta.services.cliente;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
