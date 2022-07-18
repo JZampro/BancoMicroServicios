@@ -43,9 +43,11 @@ public class TransactionController {
         return transaction1.toString();
     }
 
-    @GetMapping(path = "/getAll/{id}") // "idAccount"
-    @ResponseStatus(HttpStatus.OK)
-    private List<Transaction> getAllTransaction(@PathVariable Long id){
+    {/*
+        @GetMapping(path = "/getAll/{id}") // "idAccount"
+        @ResponseStatus(HttpStatus.OK)
+        private List<Transaction> getAllTransaction (@PathVariable Long id){
         return transactionService.getIds(id);
     }
+    */}
 }
