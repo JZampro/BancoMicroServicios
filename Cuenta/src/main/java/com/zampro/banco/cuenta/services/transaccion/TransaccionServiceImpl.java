@@ -3,8 +3,12 @@ package com.zampro.banco.cuenta.services.transaccion;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +20,8 @@ import com.zampro.banco.cuenta.services.cuenta.ICuentaService;
 
 @Service
 public class TransaccionServiceImpl implements ITransaccionService {
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Value("${micro.transaccion.url}")
 	private String urlTransaccion;
@@ -49,18 +55,21 @@ public class TransaccionServiceImpl implements ITransaccionService {
 		
 		cuentaService.modificar(origen);
 		cuentaService.modificar(destino);
-		
-		t.setDate(new Date());
 	}
 
 	@Override
 	public void enviarMovimiento(Transaction t) {
+		t.setDate(new Date());
+		
 		try {
-			new RestTemplate().postForEntity(urlTransaccion, t, null);
+			ResponseEntity<Transaction> resp = new RestTemplate().postForEntity(urlTransaccion, t, Transaction.class);
+			
+			if (resp.getStatusCode() == HttpStatus.OK)
+				t.setId(resp.getBody().getId());
+			
 		} catch (Exception e) {
 			throw new ErrorMicroExterno(e.getMessage());
 		}
-		
 	}
 
 }

@@ -18,8 +18,8 @@ public class TransaccionController {
 	@PostMapping("/transaccion/")
 	public Transaction realizarTransaccion(@RequestBody Transaction t) {
 		if (transService.verificarSaldo(t)) {
+			transService.enviarMovimiento(t);
 			transService.modificarSaldos(t);
-			//transService.enviarMovimiento(t);
 			return t;
 		} else
 			throw new SaldoInsuficiente();
