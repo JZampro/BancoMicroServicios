@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/servicio-pago-producer/servicio-pago-producer.iml" filepath="$PROJECT_DIR$/servicio-pago-producer/servicio-pago-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servicio-pago-producer.iml" filepath="$PROJECT_DIR$/servicio-pago-producer.iml" />
     </modules>
   </component>
 </project>
