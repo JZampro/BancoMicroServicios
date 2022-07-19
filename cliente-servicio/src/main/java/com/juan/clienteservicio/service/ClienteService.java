@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class ClienteService {
 
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -28,8 +29,17 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
+    public List<Cliente> findByEmpresaId(Long empresaId) {
+
+        return clienteRepository.findByEmpresaId(empresaId);
+    }
+
     public Cliente saveCliente(Cliente cliente) {
 
+        Long idSucursal =
+                restTemplate.getForObject("http://localhost:9001/sucursales/unasucursal",
+                        Long.class);
+        cliente.setSucursalId(idSucursal);
         return clienteRepository.save(cliente);
     }
 

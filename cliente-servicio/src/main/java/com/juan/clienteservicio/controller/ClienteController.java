@@ -20,12 +20,17 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping("/")
-    public List<Cliente> getAllClientes(){
+    public List<Cliente> getAllClientes() {
         return clienteService.findAll();
     }
 
+    @GetMapping("/empresa/{id}")
+    public List<Cliente> getAllClientesEmpresa(@PathVariable("id") Long empresaId) {
+        return clienteService.findByEmpresaId(empresaId);
+    }
+
     @PostMapping("/")
-    public Cliente saveCliente(@RequestBody Cliente cliente){
+    public Cliente saveCliente(@RequestBody Cliente cliente) {
 
         return clienteService.saveCliente(cliente);
     }
@@ -42,7 +47,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}/clientesucursal")
-    public ResponseTemplate getClienteWithSucursal(@PathVariable("id") Long clienteId){
+    public ResponseTemplate getClienteWithSucursal(@PathVariable("id") Long clienteId) {
 
         return clienteService.getClienteWithSucursal(clienteId);
     }

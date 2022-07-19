@@ -41,10 +41,13 @@ public class Cliente {
     @Column(name = "cuenta_id")
     private Long cuentaId;
 
+    @Column(name = "empresa_id")
+    private Long empresaId;
+
     public Cliente() {
     }
 
-    public Cliente(Long id, String nombre, String apellido, String email, String numDoc, Long sucursalId, Long cuentaId) {
+    public Cliente(Long id, String nombre, String apellido, String email, String numDoc, Long sucursalId, Long cuentaId, Long empresaId) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -52,6 +55,7 @@ public class Cliente {
         this.numDoc = numDoc;
         this.sucursalId = sucursalId;
         this.cuentaId = cuentaId;
+        this.empresaId = empresaId;
     }
 
     public Long getId() {
@@ -108,5 +112,13 @@ public class Cliente {
 
     public void setCuentaId(Long cuentaId) {
         this.cuentaId = cuentaId;
+    }
+
+    public Long getEmpresaId() {
+        return empresaId;
+    }
+
+    public void setEmpresaId(Long empresaId) {
+        this.empresaId = empresaId;
     }
 }
