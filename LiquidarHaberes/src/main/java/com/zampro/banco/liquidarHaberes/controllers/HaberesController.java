@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zampro.banco.liquidarHaberes.entities.Transaction;
 import com.zampro.banco.liquidarHaberes.services.HaberesService;
 
 @RestController
@@ -17,7 +18,7 @@ public class HaberesController {
 	HaberesService haberesServicio;
 	
 	@GetMapping("/liquidar")
-	public List<Object> liquidarHaberes() {
+	public List<Transaction> liquidarHaberes() {
 		haberesServicio.getColaHaberes();
 		return haberesServicio.procesarTransferencias();
 	}
