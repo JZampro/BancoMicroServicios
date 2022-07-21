@@ -2,8 +2,7 @@ package com.juan.serviciopagoproducer.dto;
 
 import java.io.Serializable;
 
-public class Cliente implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Cliente {
 
         private Long id;
         private String nombre;

@@ -1,9 +1,12 @@
 package com.juan.serviciopagoproducer.dto;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 
