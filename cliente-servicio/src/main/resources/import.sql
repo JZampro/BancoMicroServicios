@@ -1,0 +1,4 @@
+INSERT INTO clientes(nombre, apellido, email, num_doc, sucursal_id, cuenta_id, empresa_id, activo) VALUES('Juan', 'Sanahuja','juan@gmail.com' , '3757373', 1, 5, 4, true);
+INSERT INTO clientes(nombre, apellido, email, num_doc, sucursal_id, cuenta_id, empresa_id, activo) VALUES('Juan', 'Zampronio','juan2@gmail.com' , '3657373', 2, 1, 4, true);
+INSERT INTO clientes(nombre, apellido, email, num_doc, sucursal_id, cuenta_id, empresa_id, activo) VALUES('Cesar', 'Fabian','cesar@gmail.com' , '3557373', 2, 4, 14, true);
+INSERT INTO clientes(nombre, apellido, email, num_doc, sucursal_id, cuenta_id, empresa_id, activo) VALUES('Ignacio', 'Gimenez','ignacio@gmail.com' , '3457373', 1, 2, 4, true);

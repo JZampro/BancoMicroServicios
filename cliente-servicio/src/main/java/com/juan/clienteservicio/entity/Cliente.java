@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",
             updatable = false
     )
@@ -44,6 +44,9 @@ public class Cliente {
     @Column(name = "empresa_id")
     private Long empresaId;
 
+    @Column(name = "activo")
+    private boolean activo;
+
     public Cliente() {
     }
 
@@ -56,6 +59,17 @@ public class Cliente {
         this.sucursalId = sucursalId;
         this.cuentaId = cuentaId;
         this.empresaId = empresaId;
+    }
+
+    public Cliente(String nombre, String apellido, String email, String numDoc, Long sucursalId, Long cuentaId, Long empresaId, boolean activo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.numDoc = numDoc;
+        this.sucursalId = sucursalId;
+        this.cuentaId = cuentaId;
+        this.empresaId = empresaId;
+        this.activo = activo;
     }
 
     public Long getId() {
@@ -120,5 +134,13 @@ public class Cliente {
 
     public void setEmpresaId(Long empresaId) {
         this.empresaId = empresaId;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

@@ -86,4 +86,9 @@ public class ClienteController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteCliente(@PathVariable("id") Long clienteId) {
+        clienteService.baja(clienteId);
+    }
+
 }

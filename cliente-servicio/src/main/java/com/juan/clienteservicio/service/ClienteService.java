@@ -6,6 +6,7 @@ import com.juan.clienteservicio.entity.Cliente;
 import com.juan.clienteservicio.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,6 +15,8 @@ import java.util.List;
 @Service
 public class ClienteService {
 
+    @Value("${service.sucursal.uri}")
+    private String uriSucursal;
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -36,10 +39,10 @@ public class ClienteService {
 
     public Cliente saveCliente(Cliente cliente) {
 
-        Long idSucursal =
+       /* Long idSucursal =
                 restTemplate.getForObject("http://localhost:9001/sucursales/unasucursal",
-                        Long.class);
-        cliente.setSucursalId(idSucursal);
+                        Long.class);*/
+      //  cliente.setSucursalId(idSucursal);
         return clienteRepository.save(cliente);
     }
 
@@ -51,7 +54,7 @@ public class ClienteService {
         Cliente cliente = clienteRepository.findById(clienteId).get();
 
         Sucursal sucursal =
-                restTemplate.getForObject("http://localhost:9001/sucursales/" + cliente.getSucursalId(),
+                restTemplate.getForObject(uriSucursal + cliente.getSucursalId(),
                         Sucursal.class);
 
 
@@ -65,5 +68,15 @@ public class ClienteService {
     public Cliente findById(Long clienteId) {
 
         return clienteRepository.findById(clienteId).get();
+    }
+
+
+    public void baja(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+
+        if (cliente != null) {
+            cliente.setActivo(false);
+        }
+
     }
 }
